@@ -13,4 +13,3 @@ void log_error  (FILE* stream, const char* format, ...);
 void log_fatal  (FILE* stream, const char* format, ...);
 
 #endif
-

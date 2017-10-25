@@ -7,7 +7,6 @@
 #define STR_FATAL   "  FATAL: "
 #define MAX_BUFF_SIZE 64
 
-
 static void _log(FILE* stream, const char* logstr, const char* format, va_list args)
 {
     char buff[MAX_BUFF_SIZE];
@@ -58,5 +57,3 @@ void log_fatal(FILE* stream, const char* format, ...)
     _log(stream, STR_FATAL, format, args);
     va_end(args);
 }
-
-
