@@ -15,6 +15,7 @@ static void _log(FILE* stream, const char* logstr, const char* format, va_list a
     strftime(buff, MAX_BUFF_SIZE, "%F %T", localt);
     fprintf(stream, "%s %s", buff, logstr);
     vfprintf(stream, format, args);
+    fflush(stream);
     fputc('\n', stream);
 }
 
