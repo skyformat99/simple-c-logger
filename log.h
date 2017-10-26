@@ -12,4 +12,4 @@ void log_warning(FILE* stream, const char* format, ...);
 void log_error  (FILE* stream, const char* format, ...);
 void log_fatal  (FILE* stream, const char* format, ...);
 
-#endif
+#endif // !_SIMPLE_C_LOGGER
