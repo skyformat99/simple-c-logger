@@ -7,6 +7,10 @@
 #define STR_FATAL   "  FATAL: "
 #define MAX_BUFF_SIZE 64
 
+#include <stdarg.h>
+#include <stddef.h>
+#include <time.h>
+
 static void _log(FILE* stream, const char* logstr, const char* format, va_list args)
 {
     char buff[MAX_BUFF_SIZE];
