@@ -9,7 +9,7 @@
 void* log_nums(void* arg)
 {
     for (int i = 0; i < 1000; ++i)
-        log_info(stdout, "%d", i);
+        llog(LOG_INFO, stdout, "%d", i);
     return NULL;
 }
 #pragma GCC diagnostic pop
