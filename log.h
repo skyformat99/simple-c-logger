@@ -3,17 +3,13 @@
 
 #include <stdio.h>
 
-#define LOG_INFO    0b00001
-#define LOG_DEBUG   0b00010
-#define LOG_WARNING 0b00100
-#define LOG_ERROR   0b01000
-#define LOG_FATAL   0b10000
-void set_global_log_config(int config);
+#define LOG_INFO    (1 << 0)
+#define LOG_DEBUG   (1 << 1)
+#define LOG_WARNING (1 << 2)
+#define LOG_ERROR   (1 << 3)
+#define LOG_FATAL   (1 << 4)
 
-void log_info   (FILE* stream, const char* format, ...);
-void log_debug  (FILE* stream, const char* format, ...);
-void log_warning(FILE* stream, const char* format, ...);
-void log_error  (FILE* stream, const char* format, ...);
-void log_fatal  (FILE* stream, const char* format, ...);
+void set_global_log_config(int config);
+void llog(int level, FILE* stream, const char* format, ...);
 
 #endif // !_SIMPLE_C_LOGGER
