@@ -18,12 +18,11 @@ static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 static int LOG_CUTOFF_LEVEL = LOG_INFO;
 
-// This could be made an atomic_t instead to guarentee thread safety, but it
-// would be really unlikely to be needed...
-void set_global_log_config(int c)
+void set_global_log_threshold(int threshold)
 {
-    LOG_CUTOFF_LEVEL = c;
+    LOG_CUTOFF_LEVEL = threshold;
 }
+
 static void _log(FILE* stream, const char* logstr, const char* format, va_list args)
 {
     char buff[MAX_BUFF_SIZE];
@@ -47,9 +46,11 @@ static void _log(FILE* stream, const char* logstr, const char* format, va_list a
 
 void llog(int level, FILE* stream, const char* format, ...)
 {
-    if (level < LOG_CUTOFF_LEVEL) {
+    if (level < LOG_CUTOFF_LEVEL)
+    {
         return;
     }
+
     va_list args;
     va_start(args, format);
     switch(level) {
@@ -69,8 +70,7 @@ void llog(int level, FILE* stream, const char* format, ...)
             _log(stream, STR_FATAL, format, args);
             break;
         default:
-            // invalid level given, silently do nothing. This can easily be
-            // changed.
+            // invalid level given, silently do nothing.
             break;
     }
     va_end(args);
