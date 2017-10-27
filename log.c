@@ -16,6 +16,11 @@
 static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 #endif // !LOG_USE_PTHREAD
 
+static int config = LOG_INFO | LOG_DEBUG | LOG_WARNING | LOG_ERROR | LOG_FATAL;
+void set_global_log_config(int c)
+{
+    config = c;
+}
 static void _log(FILE* stream, const char* logstr, const char* format, va_list args)
 {
     char buff[MAX_BUFF_SIZE];
@@ -39,6 +44,7 @@ static void _log(FILE* stream, const char* logstr, const char* format, va_list a
 
 void log_info(FILE* stream, const char* format, ...)
 {
+    if (!(config & LOG_INFO)) return;
     va_list args;
     va_start(args, format);
     _log(stream, STR_INFO, format, args);
@@ -47,6 +53,7 @@ void log_info(FILE* stream, const char* format, ...)
 
 void log_debug(FILE* stream, const char* format, ...)
 {
+    if (!(config & LOG_DEBUG)) return;
     va_list args;
     va_start(args, format);
     _log(stream, STR_DEBUG, format, args);
@@ -55,6 +62,7 @@ void log_debug(FILE* stream, const char* format, ...)
 
 void log_warning(FILE* stream, const char* format, ...)
 {
+    if (!(config & LOG_WARNING)) return;
     va_list args;
     va_start(args, format);
     _log(stream, STR_WARNING, format, args);
@@ -63,6 +71,7 @@ void log_warning(FILE* stream, const char* format, ...)
 
 void log_error(FILE* stream, const char* format, ...)
 {
+    if (!(config & LOG_ERROR)) return;
     va_list args;
     va_start(args, format);
     _log(stream, STR_ERROR, format, args);
@@ -71,6 +80,7 @@ void log_error(FILE* stream, const char* format, ...)
 
 void log_fatal(FILE* stream, const char* format, ...)
 {
+    if (!(config & LOG_FATAL)) return;
     va_list args;
     va_start(args, format);
     _log(stream, STR_FATAL, format, args);
