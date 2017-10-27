@@ -6,9 +6,10 @@ EXAMPLE_DIR=examples/
 INSTALL_LIB_DIR=/usr/local/lib/
 INSTALL_INCLUDE_DIR=/usr/local/include/
 
-LOG_HEADER=log.h
-LOG_OBJ=log.o
-LOG_LIB=log
+LOG_HEADER=s_log.h
+LOG_SRC=s_log.c
+LOG_OBJ=s_log.o
+LOG_LIB=s_log
 LOG_LIB_OUT=lib$(LOG_LIB).a
 
 OPTIMIZATION_LEVEL=-O3
@@ -17,7 +18,7 @@ all: build
 
 build: clean
 	mkdir -p $(BUILD_DIR)
-	gcc $(CFLAGS) -c -o $(BUILD_DIR)$(LOG_OBJ) log.c $(OPTIMIZATION_LEVEL) $(DEFINE_USE_PTHREAD)
+	gcc $(CFLAGS) -c -o $(BUILD_DIR)$(LOG_OBJ) $(LOG_SRC) $(OPTIMIZATION_LEVEL) $(DEFINE_USE_PTHREAD)
 	ar rcs $(BUILD_DIR)$(LOG_LIB_OUT) $(BUILD_DIR)$(LOG_OBJ)
 
 install: build

@@ -1,21 +1,21 @@
 /* example_basic.c */
-#include <log.h>
+#include <s_log.h>
 
 int main(void)
 {
     int foo = 0;
-    llog(LOG_INFO,    stdout, "This is a message created with log_info     foo = %d", foo++);
-    llog(LOG_DEBUG,   stdout, "This is a message created with log_debug    foo = %d", foo++);
-    llog(LOG_WARNING, stdout, "This is a message created with log_warning  foo = %d", foo++);
-    llog(LOG_ERROR,   stdout, "This is a message created with log_error    foo = %d", foo++);
-    llog(LOG_FATAL,   stdout, "This is a message created with log_fatal    foo = %d", foo++);
+    s_log(LOG_INFO,    stdout, "This is a message created with LOG_INFO     foo = %d", foo++);
+    s_log(LOG_DEBUG,   stdout, "This is a message created with LOG_DEBUG    foo = %d", foo++);
+    s_log(LOG_WARNING, stdout, "This is a message created with LOG_WARNING  foo = %d", foo++);
+    s_log(LOG_ERROR,   stdout, "This is a message created with LOG_ERROR    foo = %d", foo++);
+    s_log(LOG_FATAL,   stdout, "This is a message created with LOG_FATAL    foo = %d", foo++);
 
-    set_global_log_threshold(LOG_ERROR); // Log only error and fatal messages.
-    llog(LOG_INFO, stdout,    "some info message");
-    llog(LOG_DEBUG, stdout,   "some debug message");
-    llog(LOG_WARNING, stdout, "some warning message");
-    llog(LOG_ERROR, stdout,   "some error message");
-    llog(LOG_FATAL, stdout,   "some fatal message");
+    s_log_set_global_threshold(LOG_ERROR); // Log only error and fatal messages.
+    s_log(LOG_INFO, stdout,    "some info message");
+    s_log(LOG_DEBUG, stdout,   "some debug message");
+    s_log(LOG_WARNING, stdout, "some warning message");
+    s_log(LOG_ERROR, stdout,   "some error message");
+    s_log(LOG_FATAL, stdout,   "some fatal message");
 
     return 0;
 }

@@ -1,4 +1,4 @@
-#include "log.h"
+#include "s_log.h"
 
 #define STR_INFO    "   INFO: "
 #define STR_DEBUG   "  DEBUG: "
@@ -11,14 +11,14 @@
 #include <stddef.h>
 #include <time.h>
 
-#ifdef LOG_USE_PTHREAD
+#ifdef S_LOG_USE_PTHREAD
 #include <pthread.h>
 static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-#endif // !LOG_USE_PTHREAD
+#endif // !S_LOG_USE_PTHREAD
 
 static int LOG_CUTOFF_LEVEL = LOG_INFO;
 
-void set_global_log_threshold(int threshold)
+void s_log_set_global_threshold(int threshold)
 {
     LOG_CUTOFF_LEVEL = threshold;
 }
@@ -28,9 +28,9 @@ static void _log(FILE* stream, const char* logstr, const char* format, va_list a
     char buff[MAX_BUFF_SIZE];
     const time_t currt = time(NULL);
 
-    #ifdef LOG_USE_PTHREAD
+    #ifdef S_LOG_USE_PTHREAD
     pthread_mutex_lock(&mutex);
-    #endif // !LOG_USE_PTHREAD
+    #endif // !S_LOG_USE_PTHREAD
 
     const struct tm* localt = localtime(&currt);
     strftime(buff, MAX_BUFF_SIZE, "%F %T", localt);
@@ -39,12 +39,12 @@ static void _log(FILE* stream, const char* logstr, const char* format, va_list a
     fputc('\n', stream);
     fflush(stream);
 
-    #ifdef LOG_USE_PTHREAD
+    #ifdef S_LOG_USE_PTHREAD
     pthread_mutex_unlock(&mutex);
-    #endif // !LOG_USE_PTHREAD
+    #endif // !S_LOG_USE_PTHREAD
 }
 
-void llog(int level, FILE* stream, const char* format, ...)
+void s_log(int level, FILE* stream, const char* format, ...)
 {
     if (level < LOG_CUTOFF_LEVEL)
     {
