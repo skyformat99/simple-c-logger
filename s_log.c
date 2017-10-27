@@ -1,10 +1,5 @@
 #include "s_log.h"
 
-#define STR_INFO    "   INFO: "
-#define STR_DEBUG   "  DEBUG: "
-#define STR_WARNING "WARNING: "
-#define STR_ERROR   "  ERROR: "
-#define STR_FATAL   "  FATAL: "
 #define MAX_BUFF_SIZE 64
 
 #include <stdarg.h>
@@ -17,6 +12,13 @@ static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 #endif // !S_LOG_USE_PTHREAD
 
 static int LOG_CUTOFF_LEVEL = LOG_INFO;
+static const char* const prefix_string[] = {
+    "   INFO: ",
+    "  DEBUG: ",
+    "WARNING: ",
+    "  ERROR: ",
+    "  FATAL: "
+};
 
 void s_log_set_global_threshold(int threshold)
 {
@@ -53,25 +55,9 @@ void s_log(int level, FILE* stream, const char* format, ...)
 
     va_list args;
     va_start(args, format);
-    switch(level) {
-        case LOG_INFO:
-            _log(stream, STR_INFO, format, args);
-            break;
-        case LOG_DEBUG:
-            _log(stream, STR_DEBUG, format, args);
-            break;
-        case LOG_WARNING:
-            _log(stream, STR_WARNING, format, args);
-            break;
-        case LOG_ERROR:
-            _log(stream, STR_ERROR, format, args);
-            break;
-        case LOG_FATAL:
-            _log(stream, STR_FATAL, format, args);
-            break;
-        default:
-            // invalid level given, silently do nothing.
-            break;
+    if (level >= LOG_INFO && level <= LOG_FATAL)
+    {
+        _log(stream, prefix_string[level], format, args);
     }
     va_end(args);
 }
