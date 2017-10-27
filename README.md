@@ -24,6 +24,12 @@ the library locally with `make install`. Installing locally will add `log.h` to
 your local include path and add `liblog.a` to your local lib path so that the
 library can be linked-to with `-llog`.
 
+Logging is thread safe <sup>citation needed</sup> if `LOG_USE_PTHREAD` is
+defined when compiling the library. To build or install the library using
+pthread mutex locks run `make build CFLAGS=-DLOG_USE_PTHREAD` or
+`make install CFLAGS=-DLOG_USE_PTHREAD`. When built in this manner
+you must link your final executable to the pthread library with `-lpthread`.
+
 ## Example
 
 ```C

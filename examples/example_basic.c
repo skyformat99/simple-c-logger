@@ -1,4 +1,4 @@
-/* example.c */
+/* example_basic.c */
 #include <log.h>
 
 int main(void)
