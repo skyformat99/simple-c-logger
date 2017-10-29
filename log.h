@@ -13,10 +13,10 @@
 
 // Calls to s_log with log level less than threshold will not be printed.
 // Default threshold is LOG_DEBUG.
-void s_log_set_global_threshold(int threshold);
+void set_global_log_threshold(int threshold);
 
 // Log a message at the specified log level to the provided output stream using
 // printf style formatting.
-void s_log(int level, FILE* stream, const char* format, ...);
+void flogf(int level, FILE* stream, const char* format, ...);
 
 #endif // !_SIMPLE_C_LOGGER

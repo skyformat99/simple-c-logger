@@ -6,10 +6,10 @@ EXAMPLE_DIR=examples/
 INSTALL_LIB_DIR=/usr/local/lib/
 INSTALL_INCLUDE_DIR=/usr/local/include/
 
-LOG_HEADER=s_log.h
-LOG_SRC=s_log.c
-LOG_OBJ=s_log.o
-LOG_LIB=s_log
+LOG_HEADER=log.h
+LOG_SRC=log.c
+LOG_OBJ=log.o
+LOG_LIB=log
 LOG_LIB_OUT=lib$(LOG_LIB).a
 
 OPTIMIZATION_LEVEL=-O3

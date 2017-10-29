@@ -1,4 +1,4 @@
-#include "s_log.h"
+#include "log.h"
 
 #define MAX_BUFF_SIZE 64
 
@@ -6,10 +6,10 @@
 #include <stddef.h>
 #include <time.h>
 
-#ifdef S_LOG_USE_PTHREAD
+#ifdef LOG_USE_PTHREAD
 #include <pthread.h>
 static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-#endif // !S_LOG_USE_PTHREAD
+#endif // !LOG_USE_PTHREAD
 
 static int LOG_CUTOFF_LEVEL = LOG_DEFAULT;
 static const char* const prefix_string[] = {
@@ -20,7 +20,7 @@ static const char* const prefix_string[] = {
     "  FATAL: "
 };
 
-void s_log_set_global_threshold(int threshold)
+void set_global_log_threshold(int threshold)
 {
     LOG_CUTOFF_LEVEL = threshold;
 }
@@ -30,9 +30,9 @@ static void _log(FILE* stream, const char* logstr, const char* format, va_list a
     char buff[MAX_BUFF_SIZE];
     const time_t currt = time(NULL);
 
-    #ifdef S_LOG_USE_PTHREAD
+    #ifdef LOG_USE_PTHREAD
     pthread_mutex_lock(&mutex);
-    #endif // !S_LOG_USE_PTHREAD
+    #endif // !LOG_USE_PTHREAD
 
     const struct tm* localt = localtime(&currt);
     strftime(buff, MAX_BUFF_SIZE, "%F %T", localt);
@@ -41,23 +41,22 @@ static void _log(FILE* stream, const char* logstr, const char* format, va_list a
     fputc('\n', stream);
     fflush(stream);
 
-    #ifdef S_LOG_USE_PTHREAD
+    #ifdef LOG_USE_PTHREAD
     pthread_mutex_unlock(&mutex);
-    #endif // !S_LOG_USE_PTHREAD
+    #endif // !LOG_USE_PTHREAD
 }
 
-void s_log(int level, FILE* stream, const char* format, ...)
+void flogf(int level, FILE* stream, const char* format, ...)
 {
+    // Return if log level doesn't meet the global threshold.
     if (level < LOG_CUTOFF_LEVEL)
-    {
         return;
-    }
+    // Silently fail if an invalid log level is provided.
+    if (level < LOG_DEBUG || level > LOG_FATAL)
+        return;
 
     va_list args;
     va_start(args, format);
-    if (level >= LOG_DEBUG && level <= LOG_FATAL)
-    {
-        _log(stream, prefix_string[level], format, args);
-    }
+    _log(stream, prefix_string[level], format, args);
     va_end(args);
 }

@@ -1,5 +1,5 @@
 /* example_multithread.c */
-#include <s_log.h>
+#include <log.h>
 #include <pthread.h>
 
 #define NTHREADS 5
@@ -9,7 +9,7 @@
 void* log_nums(void* arg)
 {
     for (int i = 0; i < 1000; ++i)
-        s_log(LOG_INFO, stdout, "%d", i);
+        flogf(LOG_INFO, stdout, "%d", i);
     return NULL;
 }
 #pragma GCC diagnostic pop
