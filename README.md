@@ -71,13 +71,13 @@ ar rcs build/liblog.a build/log.o
 gcc -Wall -Wextra -std=c11 -o build/example_basic examples/example_basic.c -I. -Lbuild/ -llog
 gcc -Wall -Wextra -std=c11 -o build/example_multithread examples/example_multithread.c -I. -Lbuild/ -llog -pthread
 $ ./build/example_basic 
-2017-10-28 20:23:31   DEBUG: This is a message created with LOG_INFO     foo = 0
-2017-10-28 20:23:31    INFO: This is a message created with LOG_DEBUG    foo = 1
-2017-10-28 20:23:31 WARNING: This is a message created with LOG_WARNING  foo = 2
-2017-10-28 20:23:31   ERROR: This is a message created with LOG_ERROR    foo = 3
-2017-10-28 20:23:31   FATAL: This is a message created with LOG_FATAL    foo = 4
-2017-10-28 20:23:31   ERROR: some error message
-2017-10-28 20:23:31   FATAL: some fatal message
+2017-10-28 20:45:08    INFO: This is a message created with LOG_INFO     foo = 0
+2017-10-28 20:45:08   DEBUG: This is a message created with LOG_DEBUG    foo = 1
+2017-10-28 20:45:08 WARNING: This is a message created with LOG_WARNING  foo = 2
+2017-10-28 20:45:08   ERROR: This is a message created with LOG_ERROR    foo = 3
+2017-10-28 20:45:08   FATAL: This is a message created with LOG_FATAL    foo = 4
+2017-10-28 20:45:08   ERROR: some error message
+2017-10-28 20:45:08   FATAL: some fatal message
 ```
 
 ## License

@@ -13,8 +13,8 @@ static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 static int LOG_CUTOFF_LEVEL = LOG_DEFAULT;
 static const char* const prefix_string[] = {
-    "   INFO: ",
     "  DEBUG: ",
+    "   INFO: ",
     "WARNING: ",
     "  ERROR: ",
     "  FATAL: "
