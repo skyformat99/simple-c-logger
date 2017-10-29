@@ -11,7 +11,7 @@ one to log a message at the provided log level to the provided output stream
 using printf style formatting.
 
 ```C
-// Calls to s_log with log level less than threshold will not be printed.
+// Calls to flogf with log level less than threshold will not be printed.
 // Default threshold is LOG_DEBUG.
 void set_global_log_threshold(int threshold);
 
