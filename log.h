@@ -12,7 +12,7 @@
 #define LOG_DEFAULT LOG_DEBUG
 
 // Calls to flogf with log level less than threshold will not be printed.
-// Default threshold is LOG_DEBUG.
+// By default the library will log messages at all log levels.
 void set_global_log_threshold(int threshold);
 
 // Log a message at the specified log level to the provided output stream using
