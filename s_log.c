@@ -55,7 +55,7 @@ void s_log(int level, FILE* stream, const char* format, ...)
 
     va_list args;
     va_start(args, format);
-    if (level >= LOG_INFO && level <= LOG_FATAL)
+    if (level >= LOG_DEBUG && level <= LOG_FATAL)
     {
         _log(stream, prefix_string[level], format, args);
     }

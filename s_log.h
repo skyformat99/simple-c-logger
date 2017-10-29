@@ -3,11 +3,13 @@
 
 #include <stdio.h>
 
-#define LOG_INFO    0
-#define LOG_DEBUG   1
+#define LOG_DEBUG   0
+#define LOG_INFO    1
 #define LOG_WARNING 2
 #define LOG_ERROR   3
 #define LOG_FATAL   4
+
+#define LOG_DEFAULT LOG_DEBUG
 
 // Calls to s_log with log level less than threshold will not be printed.
 // Default threshold is LOG_DEBUG.
