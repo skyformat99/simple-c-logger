@@ -82,10 +82,4 @@ $ ./build/example_basic
 
 ## License
 The Unlicense
-2017-10-28 20:45:08    INFO: This is a message created with LOG_INFO     foo = 0
-2017-10-28 20:45:08   DEBUG: This is a message created with LOG_DEBUG    foo = 1
-2017-10-28 20:45:08 WARNING: This is a message created with LOG_WARNING  foo = 2
-2017-10-28 20:45:08   ERROR: This is a message created with LOG_ERROR    foo = 3
-2017-10-28 20:45:08   FATAL: This is a message created with LOG_FATAL    foo = 4
-2017-10-28 20:45:08   ERROR: some error message
-2017-10-28 20:45:08   FATAL: some fatal message
+
