@@ -66,11 +66,22 @@ int main(void)
 ```sh
 $ make examples
 mkdir -p build/
-gcc -Wall -Wextra -std=c11 -c -o build/log.o log.c -O3 
+gcc -Wall -Wextra -std=c11 -c -o build/log.o log.c -O3
 ar rcs build/liblog.a build/log.o
 gcc -Wall -Wextra -std=c11 -o build/example_basic examples/example_basic.c -I. -Lbuild/ -llog
 gcc -Wall -Wextra -std=c11 -o build/example_multithread examples/example_multithread.c -I. -Lbuild/ -llog -pthread
-$ ./build/example_basic 
+$ ./build/example_basic
+2017-11-01 08:07:46   DEBUG: This is a message created with LOG_DEBUG    foo = 0
+2017-11-01 08:07:46    INFO: This is a message created with LOG_INFO     foo = 1
+2017-11-01 08:07:46 WARNING: This is a message created with LOG_WARNING  foo = 2
+2017-11-01 08:07:46   ERROR: This is a message created with LOG_ERROR    foo = 3
+2017-11-01 08:07:46   FATAL: This is a message created with LOG_FATAL    foo = 4
+2017-11-01 08:07:46   ERROR: some error message
+2017-11-01 08:07:46   FATAL: some fatal message
+```
+
+## License
+The Unlicense
 2017-10-28 20:45:08    INFO: This is a message created with LOG_INFO     foo = 0
 2017-10-28 20:45:08   DEBUG: This is a message created with LOG_DEBUG    foo = 1
 2017-10-28 20:45:08 WARNING: This is a message created with LOG_WARNING  foo = 2
@@ -78,7 +89,3 @@ $ ./build/example_basic
 2017-10-28 20:45:08   FATAL: This is a message created with LOG_FATAL    foo = 4
 2017-10-28 20:45:08   ERROR: some error message
 2017-10-28 20:45:08   FATAL: some fatal message
-```
-
-## License
-The Unlicense
